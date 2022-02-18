@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Form, Modal} from 'react-bootstrap';  
+import RestService from '../RestService';
 
 class AddUserModal extends React.Component {
     // const [show, setShow] = useState(false);
@@ -45,13 +46,19 @@ class AddUserModal extends React.Component {
 
     handleSubmit() {
         console.log(JSON.stringify(this.state));
+        this.saveUser();
+    }
+
+    saveUser() {
+      RestService.createNewEmployee(this.state).then(d => {
         this.handleClose();
+      });
     }
 
     render() {
         return (
             <>
-              <Button variant="primary" onClick={this.handleShow}>
+              <Button variant="primary" className="btn-space"onClick={this.handleShow}>
                 Add User
               </Button>
         
@@ -72,7 +79,7 @@ class AddUserModal extends React.Component {
       
                   <Form.Group className="mb-3" controlId="formBasicTextarea">
                       <Form.Label>Address</Form.Label>
-                      <Form.Control as="textarea" placeholder="Enter Address" name="address" value={this.state.address} onChange={this.handleInputChange}/>
+                      <Form.Control type="text" placeholder="Enter Address" name="address" value={this.state.address} onChange={this.handleInputChange}/>
                   </Form.Group>
       
                   <Form.Group className="mb-3" controlId="joiningDate">
