@@ -17,11 +17,7 @@ const employeeSchema = new Schema({
     joiningDate: {
         type: String,
         required: true
-    },
-    id: {
-        type: Number
     }
-
 }); 
 
 module.exports = mongoose.model('Employee', employeeSchema);
