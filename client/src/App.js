@@ -14,7 +14,7 @@ function App() {
   }, [isUserChanged]);
 
   function updateUserChanged() {
-    setUserChanged(true);
+    setUserChanged(!isUserChanged);
   }
 
   return (
